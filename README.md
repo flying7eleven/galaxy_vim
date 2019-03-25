@@ -1,12 +1,12 @@
-Role Name
+linux_vim
 =========
 
-A brief description of the role goes here.
+This role can be used to install and set up `vim` on your linux computer. 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+There are **no** additional requirements which have to be fulfilled before using this role.
 
 Role Variables
 --------------
@@ -16,23 +16,24 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This roles is **not** depending on any other role.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: localhost
+      connection: local
       roles:
-         - { role: username.rolename, x: 42 }
+         - linux_vim
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role is developed and maintained by [Tim Hütz](https://github.com/thuetz).
