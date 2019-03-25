@@ -1,2 +1,41 @@
 ---
-# tasks file for linux_vim
+- name: Install vim and related components (Arch Linux)...
+  become: yes
+  pacman: name={{ item }} state=latest
+  with_items:
+    - vim
+    - ctags
+  when: ansible_os_family == 'Arch Linux' or ansible_os_family == 'Archlinux'
+
+- name: Install vim and related components (macOS)...
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - vim
+    - ctags
+  when: ansible_os_family == 'Darwin'
+
+- name: Install vim and related components (Debian)...
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - vim
+    - ctags
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure that the directories for the vim confiuration exist...
+  with_items:
+    - ~/.vim
+    - ~/.vim/bundle
+  file: path={{ item }} state=directory
+
+- name: Install .vimrc file to the home directory...
+  template: src=vimrc.j2 dest=~/.vimrc
+
+- name: Get the Vundle.vim plugin...
+  git: repo=https://github.com/VundleVim/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim update=yes accept_hostkey=yes
+
+- name: Ensure all plugins are installed...
+  command: vim +PluginInstall +qall
+
+#- name: Ensure all plugins are up to date...
+#  command: vim +PluginUpdate +qall

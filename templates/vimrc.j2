@@ -1,0 +1,120 @@
+" disable the compability mode... behave as vIMproved.
+set nocompatible
+
+" ensure the encoding will be interpreted correctly
+scriptencoding utf-8
+set encoding=utf-8
+
+" disable filetype detection temporarily
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" list the plugins we need
+Plugin 'gmarik/Vundle.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+Plugin 'terryma/vim-multiple-cursors' " multiple cursors in vim
+Plugin 'bronson/vim-trailing-whitespace' " show trailing whitespace were not required
+Plugin 'airblade/vim-gitgutter' " git changes in vim (patch style)
+Plugin 'kien/ctrlp.vim' " last open files with ctrl+p
+Plugin 'gorodinskiy/vim-coloresque' " css/less/sass/html color preview for vim
+Plugin 'stephpy/vim-yaml' " override vim syntax for yaml files
+Plugin 'tpope/vim-fugitive' " a git wrapper so awesome, it should be illegal
+Plugin 'scrooloose/nerdtree' " a tree explorer plugin for vim
+Plugin 'scrooloose/nerdcommenter' " plugin for intensely orgasmic commenting
+Plugin 'Xuyuanp/nerdtree-git-plugin' " a plugin of NERDTree showing git status
+Plugin 'lilydjwg/colorizer' " a plugin for colorizing hex color codes
+Plugin 'vimwiki/vimwiki' " a plugin for local wiki support
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+
+" enable loading the indent file for specific file types
+filetype plugin indent on
+
+" enable syntax highlighting
+syntax on
+set background=dark
+
+" highlight tabs and spaces
+set list
+set listchars=tab:»·
+set listchars+=trail:·
+set listchars+=extends:>,precedes:<
+
+" hightlight search results
+set hlsearch
+
+" enable spell checking
+set spell
+highlight clear SpellBad
+highlight SpellBad term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
+
+" interpret modelines and use the first two lines of a file for that
+set modeline
+set modelines=2
+
+" show the line numbers
+set number
+
+" move the .viminfo file into the .vim folder
+set viminfo+=n~/.vim/viminfo
+
+" show matching brackets
+set showmatch
+
+" map some keys we need on a regular basis
+map <F8> :w<CR>:!uncrustify -c ~/.uncrustify.config -f % -o %<CR>:!rm -f %.unc-backup*<CR>:e<CR>
+
+" do not intend code (for valid pasting into vim)
+set paste
+
+" open new buffers as tabs
+" au BufAdd,BufNewFile * nested tab sball
+
+" map F11 and F12 for tab movement
+map <F11> :tabp<CR>
+map <F12> :tabn<CR>
+
+" Shortcut mappings
+" =================
+
+" open NERDTree with Ctrl+O
+map <c-o> :NERDTreeToggle<cr>
+imap <c-o> <esc>:NERDTreeToggle<cr>
+
+" git status
+map <F8> :Gstatus<CR>
+imap <F8> <esc>:Gstatus<CR>
+
+" git blame
+map <F9> :Gblame<CR>
+imap <F9> <esc>:Gblame<CR>
+
+" Plugin configuration
+" ====================
+
+" NerdCommenter
+let NERDSpaceDelims = 1
+
+" NerdTree
+let NERDTreeQuitOnOpen = 1
+autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
+
+" CtrlP
+let g:ctrlp_match_window = 'top,max:20,order:ttb'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 'ra'
+
+" Multiple cursors
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
