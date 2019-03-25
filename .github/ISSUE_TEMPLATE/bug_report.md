@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Report of a found bug
+about: Create a report of a bug which you found to help to improve this ansible rule
 title: ''
-labels: ''
+labels: 'new'
 assignees: 'thuetz'
 
 ---
