@@ -1,5 +1,5 @@
-linux_vim
-=========
+galaxy_vim
+==========
 
 This role can be used to install and set up `vim` on your linux computer.
 
@@ -26,7 +26,7 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: localhost
       connection: local
       roles:
-         - linux_vim
+         - galaxy_vim
 
 License
 -------
